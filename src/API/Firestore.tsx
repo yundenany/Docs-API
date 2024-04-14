@@ -7,6 +7,7 @@ import {
   updateDoc,
   getDocs,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const docs = collection(firestore, "docs");
@@ -55,4 +56,10 @@ export const getCurrentDoc = (id: string, setCurrentDocument: any) => {
     .catch((err) => {
       console.log(err);
     });
+  
+};
+
+export const deleteDocument = async (id: string) => {
+  const docToDelete = doc(docs, id);
+  await deleteDoc(docToDelete);
 };
