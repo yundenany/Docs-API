@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 import { useState, useRef, useEffect } from "react";
 import EditorToolbar, { modules, formats } from "../../Toolbar";
 import "react-quill/dist/quill.snow.css";
-import { editDoc, getCurrentDoc } from "../../API/Firestore";
+import { editDoc, getCurrentDoc, handleFileChange } from "../../API/Firestore";
 // import {
 //   DocumentEditorContainerComponent,
 //   Toolbar,
@@ -62,6 +62,10 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
         onClick={() => handleEdit()}
         size={30}
         className="react-icon"
+      />
+      <input
+        type="file"
+        onChange={(event) => handleFileChange(event, setValue)}
       />
 
       <input
