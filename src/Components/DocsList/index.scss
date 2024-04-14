@@ -9,14 +9,15 @@
         height: 250px;
         cursor: pointer;
         border: 1px solid #cacaca;
-        border-radius: 3px;
+        // border-radius: 3px;
         position: relative;
     }
 
     .doc-content{
         font-size: 15px;
         text-align: center;
-        padding: 0 20px;
+        width: 150px;
+        padding: 20px;
     }
 
     .doc-title{

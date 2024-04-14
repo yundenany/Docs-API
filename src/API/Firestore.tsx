@@ -17,7 +17,10 @@ type payloadType = {
 };
 
 export const createDoc = (payload: payloadType) => {
-  addDoc(docs, { ...payload, userName: auth.currentUser?.displayName });
+  addDoc(docs, {
+    ...payload,
+    userName: auth.currentUser?.displayName,
+  });
 };
 
 export const getDocuments = (setDocs: any) => {
@@ -39,15 +42,15 @@ export const editDoc = (
   id: string
 ) => {
   const docToEdit = doc(docs, id);
-  updateDoc(docToEdit, { payload });
+  updateDoc(docToEdit, payload);
 };
 
-export const getCurentDoc = (id: string, setcurrentDocument: any) => {
+export const getCurrentDoc = (id: string, setCurrentDocument: any) => {
   const docToGet = doc(docs, id);
 
   getDoc(docToGet)
     .then((response) => {
-      setcurrentDocument(response.data());
+      setCurrentDocument(response.data());
     })
     .catch((err) => {
       console.log(err);

@@ -1,6 +1,6 @@
 import "./index.scss";
 import { getDocuments } from "../../API/Firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 type OpenDocType = {
   openDoc: (id: string, value: string, title: string) => void;
@@ -22,19 +22,26 @@ export default function DocsList({ openDoc }: OpenDocType) {
     getDocs();
   }, []);
 
+  const handleOpenDoc = useCallback(
+    (id: string, title: string, value: string) => {
+      openDoc(id, title, value);
+    },
+    [openDoc]
+  );
+
   return (
     <div className="docs-main">
       {docs.map((doc) => {
         return (
           <div
             key={doc.id}
-            onClick={() => openDoc(doc.id, doc.title, doc.value)}
+            onClick={() => handleOpenDoc(doc.id, doc.title, doc.value)}
             className="doc-card"
           >
             <p
               className="doc-content"
               dangerouslySetInnerHTML={{
-                __html: `${doc.value.substring(0, 100)}`,
+                __html: doc.value.substring(0, 100),
               }}
             ></p>
             <p className="doc-title">{doc.title}</p>

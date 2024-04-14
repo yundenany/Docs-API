@@ -4,10 +4,12 @@ import ReactQuill from "react-quill";
 import { useState, useRef, useEffect } from "react";
 import EditorToolbar, { modules, formats } from "../../Toolbar";
 import "react-quill/dist/quill.snow.css";
-import { editDoc, getCurentDoc } from "../../API/Firestore";
+import { editDoc, getCurrentDoc } from "../../API/Firestore";
 
 export default function EditDoc({ handleEdit, id }: functionInterface) {
-  const quillRef = useRef<ReactQuill>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const quillRef = useRef<any>(null);
+  //const quillRef = useRef<ReactQuill & { getEditor: () => unknown } | null>(null);
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [currentDocument, setCurrentDocument] = useState({
@@ -15,7 +17,7 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
     value: "",
   });
 
-  function editDoccument() {
+  function editDocument() {
     const payload = {
       value,
       title,
@@ -24,12 +26,12 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
   }
 
   const getCurentDocument = () => {
-    getCurentDoc(id, setCurrentDocument);
+    getCurrentDoc(id, setCurrentDocument);
   };
 
   useEffect(() => {
     const debounced = setTimeout(() => {
-      editDoccument();
+      editDocument();
     }, 2000);
 
     return () => clearTimeout(debounced);
@@ -37,7 +39,9 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
 
   useEffect(() => {
     getCurentDocument();
-    quillRef.current?.focus();
+    if (quillRef.current) {
+      quillRef.current.focus();
+    }
   }, []);
 
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
           setTitle(event?.target.value);
         }}
         value={title}
-        className="title-ipnut"
+        className="title-input"
         placeholder="Untitled"
       />
 

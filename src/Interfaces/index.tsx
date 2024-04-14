@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface TopbarProps {
   photoURL: string;
@@ -9,6 +11,6 @@ interface functionInterface {
   id: string;
 }
 
-// interface setterDoc{
-//   setDocs:Function;
-// }
+interface setterDoc {
+  setDocs: Function;
+}

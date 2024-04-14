@@ -1,7 +1,7 @@
 import "./index.scss";
 import docsIcon from "../../assets/docsIcon.png";
 
-export default function index({ photoURL }: TopbarProps) {
+export default function Topbar({ photoURL }: TopbarProps) {
   return (
     <div className="top-bar">
       <div className="topbar-left">

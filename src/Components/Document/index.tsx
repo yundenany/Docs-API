@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "./index.scss";
 import Topbar from "../Topbar";
-import "./index.scss";
+//import "./index.scss";
 import CreateDoc from "../CreateDoc";
 import DocsList from "../DocsList";
-// import { getCurentDoc } from "../../API/Firestore";
-// import { Value } from "sass";
 
 export default function Document({ photoURL }: TopbarProps) {
   const [isEdit, setIsEdit] = useState(false);
