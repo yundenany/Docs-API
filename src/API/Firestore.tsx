@@ -7,6 +7,7 @@ import {
   updateDoc,
   getDocs,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import mammoth from "mammoth";
 
@@ -58,6 +59,12 @@ export const getCurrentDoc = (id: string, setCurrentDocument: any) => {
     .catch((err) => {
       console.log(err);
     });
+  
+};
+
+export const deleteDocument = async (id: string) => {
+  const docToDelete = doc(docs, id);
+  await deleteDoc(docToDelete);
 };
 
 export const handleFileChange = async (
