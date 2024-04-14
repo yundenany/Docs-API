@@ -1,6 +1,11 @@
 import "./index.scss";
 import { getDocuments } from "../../API/Firestore";
 import { useEffect, useState, useCallback } from "react";
+// import {
+//   DocumentEditorContainerComponent,
+//   Toolbar,
+//   Inject,
+// } from "@syncfusion/ej2-react-documenteditor";
 
 type OpenDocType = {
   openDoc: (id: string, value: string, title: string) => void;

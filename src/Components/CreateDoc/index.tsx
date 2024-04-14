@@ -2,6 +2,7 @@ import "./index.scss";
 import addDoc from "../../assets/addDoc.png";
 import EditDoc from "../EditDoc";
 import { createDoc } from "../../API/Firestore";
+//import DocumentEditor from "../DocumentEditor";
 
 type isEditType = {
   isEdit: boolean;
