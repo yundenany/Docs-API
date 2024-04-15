@@ -11,8 +11,6 @@ import {
 } from "firebase/firestore";
 import mammoth from "mammoth";
 
-//import firebase from "firebase/app";
-
 const docs = collection(firestore, "docs");
 
 type payloadType = {
@@ -59,7 +57,6 @@ export const getCurrentDoc = (id: string, setCurrentDocument: any) => {
     .catch((err) => {
       console.log(err);
     });
-  
 };
 
 export const deleteDocument = async (id: string) => {
