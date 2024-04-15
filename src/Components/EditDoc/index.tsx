@@ -12,6 +12,8 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
   //const quillRef = useRef<ReactQuill & { getEditor: () => unknown } | null>(null);
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
+  const previousValueRef = useRef(value);
+  const previousTitleRef = useRef(title);
   const [currentDocument, setCurrentDocument] = useState({
     title: "",
     value: "",
@@ -29,13 +31,32 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
     getCurrentDoc(id, setCurrentDocument);
   };
 
-  useEffect(() => {
-    const debounced = setTimeout(() => {
-      editDocument();
-    }, 2000);
+  // useEffect(() => {
+  //   const debounced = setTimeout(() => {
+  //     editDocument();
+  //   }, 2000);
 
-    return () => clearTimeout(debounced);
-  }, [value, title]);
+  //   return () => clearTimeout(debounced);
+  // }, [value, title]);
+
+  useEffect(() => {
+    // Check if value or title has changed
+    if (
+      value !== previousValueRef.current ||
+      title !== previousTitleRef.current
+    ) {
+      // Update previous value and title
+      previousValueRef.current = value;
+      previousTitleRef.current = title;
+
+      // Call editDocument after 2 seconds
+      const debounced = setTimeout(() => {
+        editDocument();
+      }, 2000);
+
+      return () => clearTimeout(debounced);
+    }
+  }, [value, title, editDocument]);
 
   useEffect(() => {
     getCurentDocument();

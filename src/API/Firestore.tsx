@@ -10,6 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import mammoth from "mammoth";
+//import htmlToDocx from "html-docx-js-typescript";
 
 const docs = collection(firestore, "docs");
 
@@ -24,6 +25,20 @@ export const createDoc = (payload: payloadType) => {
     userName: auth.currentUser?.displayName,
   });
 };
+
+//   return getDocs(docs)
+//     .then((response) => {
+//       return response.docs.map((doc) => {
+//         const data = doc.data();
+//         // Ensure that the object conforms to DocumentType
+//         return { id: doc.id, value: data.value || "", title: data.title || "" };
+//       });
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       throw err;
+//     });
+// };
 
 export const getDocuments = (setDocs: any) => {
   getDocs(docs)
@@ -86,30 +101,3 @@ export const handleFileChange = async (
     reader.readAsArrayBuffer(file);
   }
 };
-
-//   event: React.ChangeEvent<HTMLInputElement>,
-//   setValue: React.Dispatch<React.SetStateAction<string>>
-// ) => {
-//   const file = event.target.files?.[0];
-//   if (file) {
-//     const reader = new FileReader();
-//     reader.onload = async (event) => {
-//       if (event.target) {
-//         const result = event.target.result as ArrayBuffer;
-//         const { value } = await mammoth.convertToHtml({ arrayBuffer: result });
-
-//         // Phân tích HTML và lấy ra văn bản
-//         const parser = new DOMParser();
-//         const htmlDoc = parser.parseFromString(value, "text/html");
-//         const text = htmlDoc.body.textContent || "";
-
-//         // Lưu văn bản vào Firestore
-//         await addDoc(collection(firestore, "docs"), { value });
-
-//         // Cập nhật state của nội dung để hiển thị trên trang
-//         setValue(text.substring(0, 100));
-//       }
-//     };
-//     reader.readAsArrayBuffer(file);
-//   }
-// };
