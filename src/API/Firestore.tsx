@@ -89,3 +89,29 @@ export const handleFileChange = async (
   }
 };
 
+//   event: React.ChangeEvent<HTMLInputElement>,
+//   setValue: React.Dispatch<React.SetStateAction<string>>
+// ) => {
+//   const file = event.target.files?.[0];
+//   if (file) {
+//     const reader = new FileReader();
+//     reader.onload = async (event) => {
+//       if (event.target) {
+//         const result = event.target.result as ArrayBuffer;
+//         const { value } = await mammoth.convertToHtml({ arrayBuffer: result });
+
+//         // Phân tích HTML và lấy ra văn bản
+//         const parser = new DOMParser();
+//         const htmlDoc = parser.parseFromString(value, "text/html");
+//         const text = htmlDoc.body.textContent || "";
+
+//         // Lưu văn bản vào Firestore
+//         await addDoc(collection(firestore, "docs"), { value });
+
+//         // Cập nhật state của nội dung để hiển thị trên trang
+//         setValue(text.substring(0, 100));
+//       }
+//     };
+//     reader.readAsArrayBuffer(file);
+//   }
+// };
