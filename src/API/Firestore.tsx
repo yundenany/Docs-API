@@ -11,8 +11,6 @@ import {
 } from "firebase/firestore";
 import mammoth from "mammoth";
 
-//import firebase from "firebase/app";
-
 const docs = collection(firestore, "docs");
 
 type payloadType = {
