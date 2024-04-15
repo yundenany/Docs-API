@@ -5,7 +5,11 @@ import { useState, useRef, useEffect } from "react";
 import EditorToolbar, { modules, formats } from "../../Toolbar";
 import "react-quill/dist/quill.snow.css";
 import { editDoc, getCurrentDoc, handleFileChange } from "../../API/Firestore";
-
+// import {
+//   DocumentEditorContainerComponent,
+//   Toolbar,
+//   Inject,
+// } from "@syncfusion/ej2-react-documenteditor";
 export default function EditDoc({ handleEdit, id }: functionInterface) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const quillRef = useRef<any>(null);
